@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Cliniq — Healing Businesses with Data & Talent</title>
+<meta name="description" content="Data Cliniq specializes in IT Staffing Augmentation, AI & Machine Learning, Data Science & Analytics, and Cloud & Automation solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#ff4a1c',
+          'primary-dark': '#e03b12',
+          'primary-light': '#ff6a3d',
+          dark: '#0a0a0a',
+          dark2: '#111111',
+          heading: '#111111',
+          body: '#6c6c6c',
+          'light-bg': '#f9f9f9',
+          border: '#e8e8e8',
+        },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          display: ['Space Grotesk', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  /* Base Overrides */
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #6c6c6c; background-color: #0a0a0a; overflow-x: hidden; }
+  h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; color: #111111; }
+
+  /* Pages */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* Navbar Link Underscore */
+  .nav-link::after { 
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; 
+    background: #ff4a1c; transition: width 0.3s ease; 
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+  /* Custom Hover Effects */
+  .btn-primary { box-shadow: none; transform: translateY(0); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(255,74,28,0.35); }
+  
+  .btn-outline:hover { border-color: #ff4a1c; color: #ff4a1c; transform: translateY(-1px); }
+
+  .service-card { transition: all 0.3s; }
+  .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: #ff4a1c; transition: width 0.3s; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); border-color: rgba(255,74,28,0.15); }
+  .service-card:hover::before { width: 100%; }
+  
+  .service-detail:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.07); transform: translateY(-3px); }
+
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+  .blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+  .why-card:hover { border-color: #ff4a1c; box-shadow: 0 10px 30px rgba(255,74,28,0.08); transform: translateY(-4px); }
+  
+  .form-input:focus { border-color: #ff4a1c; box-shadow: 0 0 0 3px rgba(255,74,28,0.1); }
+
+  /* DigiHub List Row */
+  .svc-row:hover .svc-icon-wrap { border-color: rgba(255,74,28,0.3); box-shadow: 0 4px 20px rgba(255,74,28,0.1); }
+  .svc-row:hover .svc-title { color: #ff4a1c; }
+  .svc-row:hover .svc-btn { background: #ff4a1c; border-color: #ff4a1c; color: #fff; }
+  
+  /* Badges & Sections */
+  .badge-dot { animation: blink 1.5s ease-in-out infinite; }
+  .section-tag::before { content: ''; display: inline-block; width: 28px; height: 2px; background: #ff4a1c; }
+  .section-heading span { color: #ff4a1c; }
+
+  /* Animations */
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255,74,28,0.12) 0%, transparent 70%); animation: pulse 6s ease-in-out infinite; }
+  .hero::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,74,28,0.06) 0%, transparent 70%); animation: pulse 8s ease-in-out infinite reverse; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+  
+  .hero-grid { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  
+  /* Hero Visual */
+  .hero-visual-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; backdrop-filter: blur(10px); }
+  
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-float-delayed { animation: float 5s ease-in-out infinite 1s; }
+
+  /* Scroll Reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Hamburger Menu Cross Animation */
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-[1000] bg-dark2 border-b border-white/5 transition-all duration-300">
+  <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-[70px]">
+    <!-- Logo -->
+    <div class="font-display text-[1.35rem] font-extrabold text-white tracking-tight cursor-pointer shrink-0" onclick="showPage('home')">
+      Data<span class="text-primary">Cliniq</span>
+    </div>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-7">
+      <a class="nav-link active text-white/75 hover:text-white font-sans text-[0.9rem] tracking-[0.02em] cursor-pointer relative" onclick="showPage('home')" id="nav-home">Home</a>
+      <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] tracking-[0.02em] cursor-pointer relative" onclick="showPage('about')" id="nav-about">About Us</a>
+      <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] tracking-[0.02em] cursor-pointer relative" onclick="showPage('services')" id="nav-services">Services</a>
+      <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] tracking-[0.02em] cursor-pointer relative" onclick="showPage('industries')" id="nav-industries">Industries</a>
+      <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] tracking-[0.02em] cursor-pointer relative" onclick="showPage('blog')" id="nav-blog">Blog</a>
+      <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] tracking-[0.02em] cursor-pointer relative" onclick="showPage('contact')" id="nav-contact">Contact</a>
+      <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-[22px] py-[10px] rounded transition-all duration-300 inline-block no-underline ml-3" onclick="showPage('contact')">Get In Touch</a>
+    </div>
+    <!-- Hamburger Menu (Hidden on Desktop) -->
+    <div class="md:hidden flex flex-col gap-[5px] cursor-pointer items-center justify-center hamburger" id="hamburger" onclick="toggleMenu()">
+      <span class="block w-6 h-[2px] bg-white transition-all duration-300"></span>
+      <span class="block w-6 h-[2px] bg-white transition-all duration-300"></span>
+      <span class="block w-6 h-[2px] bg-white transition-all duration-300"></span>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="hidden flex-col gap-5 bg-dark2 border-t border-white/5 p-6" id="mobileMenu">
+    <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] cursor-pointer" onclick="showPage('home');toggleMenu()">Home</a>
+    <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] cursor-pointer" onclick="showPage('about');toggleMenu()">About Us</a>
+    <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] cursor-pointer" onclick="showPage('services');toggleMenu()">Services</a>
+    <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] cursor-pointer" onclick="showPage('industries');toggleMenu()">Industries</a>
+    <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] cursor-pointer" onclick="showPage('blog');toggleMenu()">Blog</a>
+    <a class="nav-link text-white/75 hover:text-white font-sans text-[0.9rem] cursor-pointer" onclick="showPage('contact');toggleMenu()">Contact</a>
+    <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-[22px] py-[10px] rounded transition-all duration-300 w-fit mt-2" onclick="showPage('contact');toggleMenu()">Get In Touch</a>
+  </div>
+</nav>
+
+<!-- ====================== HOME PAGE ====================== -->
+<div id="page-home" class="page active mt-[70px]">
+  
+  <!-- HERO -->
+  <section class="hero min-h-[calc(100vh-70px)] bg-dark2 relative overflow-hidden flex items-center">
+    <div class="hero-grid absolute inset-0"></div>
+    <div class="max-w-[1200px] mx-auto px-6 py-20 relative z-10 w-full flex flex-col lg:flex-row items-center gap-16 justify-between">
+      
+      <!-- Text Side -->
+      <div class="max-w-[620px]">
+        <div class="badge inline-flex items-center gap-2 bg-primary/10 border border-primary/25 rounded-full px-4 py-1.5 text-[0.78rem] font-medium text-primary-light tracking-[0.06em] uppercase mb-7 reveal">
+          <span class="badge-dot w-1.5 h-1.5 bg-primary rounded-full"></span>
+          AI & Data Science Company
+        </div>
+        <h1 class="font-display text-[clamp(2.6rem,5vw,4.2rem)] font-extrabold leading-[1.1] text-white mb-6 reveal reveal-delay-1">
+          Transforming Data Into <span class="text-primary">Smart Business</span> Decisions
+        </h1>
+        <p class="text-white/60 text-[1.05rem] leading-[1.75] mb-9 max-w-[520px] reveal reveal-delay-2">
+          We combine elite AI expertise with strategic talent augmentation to help businesses scale faster, smarter, and more efficiently in today's data-driven world.
+        </p>
+        <div class="flex flex-wrap gap-3.5 reveal reveal-delay-3">
+          <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.9rem] px-7 py-[13px] rounded transition-all duration-300 inline-block no-underline" onclick="showPage('contact')">Get Started</a>
+          <a class="btn-outline bg-transparent text-white font-display font-semibold text-[0.9rem] px-7 py-[13px] rounded border-[1.5px] border-white/30 transition-all duration-300 inline-block no-underline" onclick="showPage('services')">Explore Services</a>
+        </div>
+        <div class="flex gap-9 mt-12 reveal reveal-delay-4">
+          <div>
+            <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="150">0+</div>
+            <div class="text-white/45 text-[0.82rem] mt-1">Projects Done</div>
+          </div>
+          <div class="w-[1px] bg-white/10"></div>
+          <div>
+            <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="80">0+</div>
+            <div class="text-white/45 text-[0.82rem] mt-1">Clients Served</div>
+          </div>
+          <div class="w-[1px] bg-white/10"></div>
+          <div>
+            <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="98">0%</div>
+            <div class="text-white/45 text-[0.82rem] mt-1">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Staffing & Augmentation Illustration -->
+      <div class="relative w-[460px] h-[460px] shrink-0 hidden lg:flex items-center justify-center reveal reveal-delay-2">
+        <svg viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <defs>
+            <!-- Gradients -->
+            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff4a1c" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#ff4a1c" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="cardGrad1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1e1e1e"/>
+              <stop offset="100%" stop-color="#141414"/>
+            </linearGradient>
+            <linearGradient id="cardGrad2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a1a1a"/>
+              <stop offset="100%" stop-color="#111"/>
+            </linearGradient>
+            <linearGradient id="avatarGrad1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff4a1c"/>
+              <stop offset="100%" stop-color="#e03b12"/>
+            </linearGradient>
+            <linearGradient id="avatarGrad2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff6a3d"/>
+              <stop offset="100%" stop-color="#ff4a1c"/>
+            </linearGradient>
+            <linearGradient id="avatarGrad3" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff4a1c"/>
+              <stop offset="100%" stop-color="#c23510"/>
+            </linearGradient>
+            <linearGradient id="brainGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff4a1c" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#ff6a3d" stop-opacity="0.7"/>
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softglow">
+              <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Clip for avatar circles -->
+            <clipPath id="clip1"><circle cx="230" cy="190" r="38"/></clipPath>
+            <clipPath id="clip2"><circle cx="115" cy="310" r="32"/></clipPath>
+            <clipPath id="clip3"><circle cx="345" cy="310" r="32"/></clipPath>
+            <clipPath id="clip4"><circle cx="148" cy="145" r="26"/></clipPath>
+            <clipPath id="clip5"><circle cx="312" cy="145" r="26"/></clipPath>
+          </defs>
+
+          <!-- Background radial glow -->
+          <circle cx="230" cy="230" r="210" fill="url(#bgGlow)"/>
+
+          <!-- Outer dashed orbit ring -->
+          <circle cx="230" cy="230" r="200" stroke="#ff4a1c" stroke-width="0.5" stroke-dasharray="6 8" stroke-opacity="0.2">
+            <animateTransform attributeName="transform" type="rotate" from="0 230 230" to="360 230 230" dur="60s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Mid orbit ring -->
+          <circle cx="230" cy="230" r="155" stroke="#ff4a1c" stroke-width="0.5" stroke-dasharray="4 10" stroke-opacity="0.15">
+            <animateTransform attributeName="transform" type="rotate" from="360 230 230" to="0 230 230" dur="40s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- CONNECTION LINES from center to talent cards -->
+          <!-- Center → bottom-left -->
+          <line x1="230" y1="228" x2="115" y2="310" stroke="#ff4a1c" stroke-width="1.2" stroke-opacity="0.35" stroke-dasharray="5 4">
+            <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="1.5s" repeatCount="indefinite"/>
+          </line>
+          <!-- Center → bottom-right -->
+          <line x1="230" y1="228" x2="345" y2="310" stroke="#ff4a1c" stroke-width="1.2" stroke-opacity="0.35" stroke-dasharray="5 4">
+            <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="1.8s" repeatCount="indefinite"/>
+          </line>
+          <!-- Center → top-left -->
+          <line x1="230" y1="152" x2="148" y2="145" stroke="#ff4a1c" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="4 5">
+            <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- Center → top-right -->
+          <line x1="230" y1="152" x2="312" y2="145" stroke="#ff4a1c" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="4 5">
+            <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2.2s" repeatCount="indefinite"/>
+          </line>
+
+          <!-- ── CENTRAL AI BRAIN NODE ── -->
+          <circle cx="230" cy="190" r="52" fill="#0f0f0f" stroke="#ff4a1c" stroke-width="1.5" stroke-opacity="0.5"/>
+          <circle cx="230" cy="190" r="44" fill="url(#cardGrad1)" stroke="#ff4a1c" stroke-width="0.5" stroke-opacity="0.3"/>
+          <!-- Pulsing glow ring -->
+          <circle cx="230" cy="190" r="52" stroke="#ff4a1c" stroke-width="2" stroke-opacity="0.3" fill="none">
+            <animate attributeName="r" values="52;60;52" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Brain / AI icon in center -->
+          <!-- Left lobe -->
+          <path d="M218 183 C210 176 205 183 207 191 C205 196 209 202 215 201 C217 205 222 207 226 204 L226 183 Z" fill="url(#brainGrad)" opacity="0.85" filter="url(#glow)"/>
+          <!-- Right lobe -->
+          <path d="M242 183 C250 176 255 183 253 191 C255 196 251 202 245 201 C243 205 238 207 234 204 L234 183 Z" fill="url(#brainGrad)" opacity="0.85" filter="url(#glow)"/>
+          <!-- Center bridge -->
+          <path d="M226 183 L226 204 C228 205 232 205 234 204 L234 183 C232 181 228 181 226 183 Z" fill="#ff4a1c" opacity="0.6"/>
+          <!-- Brain details - neural lines -->
+          <path d="M213 188 Q216 184 220 187" stroke="white" stroke-width="0.8" stroke-opacity="0.5" fill="none"/>
+          <path d="M212 194 Q216 191 219 193" stroke="white" stroke-width="0.8" stroke-opacity="0.5" fill="none"/>
+          <path d="M247 188 Q244 184 240 187" stroke="white" stroke-width="0.8" stroke-opacity="0.5" fill="none"/>
+          <path d="M248 194 Q244 191 241 193" stroke="white" stroke-width="0.8" stroke-opacity="0.5" fill="none"/>
+          <!-- Small circuit dots on brain -->
+          <circle cx="214" cy="188" r="1.5" fill="white" opacity="0.7"/>
+          <circle cx="213" cy="195" r="1.5" fill="white" opacity="0.7"/>
+          <circle cx="246" cy="188" r="1.5" fill="white" opacity="0.7"/>
+          <circle cx="247" cy="195" r="1.5" fill="white" opacity="0.7"/>
+          <!-- AI label -->
+          <text x="230" y="215" text-anchor="middle" fill="#ff4a1c" font-size="8" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="3" opacity="0.9">AI CORE</text>
+
+          <!-- ── TALENT PROFILE CARDS ── -->
+
+          <!-- Bottom-left: Data Scientist -->
+          <rect x="60" y="270" width="110" height="80" rx="10" fill="url(#cardGrad1)" stroke="#ff4a1c" stroke-width="1" stroke-opacity="0.35"/>
+          <!-- Avatar circle -->
+          <circle cx="115" cy="310" r="32" fill="#1a1a1a"/>
+          <circle cx="115" cy="310" r="22" fill="url(#avatarGrad1)" opacity="0.9"/>
+          <!-- Person silhouette -->
+          <circle cx="115" cy="304" r="7" fill="white" opacity="0.9"/>
+          <path d="M102 322 Q115 314 128 322" fill="white" opacity="0.7"/>
+          <!-- Role tag -->
+          <rect x="68" y="272" width="88" height="16" rx="4" fill="#ff4a1c" opacity="0.15"/>
+          <text x="112" y="283" text-anchor="middle" fill="#ff6a3d" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="1">DATA SCIENTIST</text>
+          <!-- Skills dots -->
+          <circle cx="82" cy="342" r="3" fill="#ff4a1c" opacity="0.8"/>
+          <circle cx="92" cy="342" r="3" fill="#ff4a1c" opacity="0.5"/>
+          <circle cx="102" cy="342" r="3" fill="#ff4a1c" opacity="0.3"/>
+          <!-- Match badge -->
+          <rect x="110" y="336" width="52" height="14" rx="7" fill="#ff4a1c" opacity="0.15" stroke="#ff4a1c" stroke-width="0.5"/>
+          <text x="136" y="346" text-anchor="middle" fill="#ff4a1c" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="700">✓ MATCHED</text>
+
+          <!-- Bottom-right: ML Engineer -->
+          <rect x="290" y="270" width="110" height="80" rx="10" fill="url(#cardGrad1)" stroke="#ff4a1c" stroke-width="1" stroke-opacity="0.35"/>
+          <circle cx="345" cy="310" r="32" fill="#1a1a1a"/>
+          <circle cx="345" cy="310" r="22" fill="url(#avatarGrad2)" opacity="0.9"/>
+          <circle cx="345" cy="304" r="7" fill="white" opacity="0.9"/>
+          <path d="M332 322 Q345 314 358 322" fill="white" opacity="0.7"/>
+          <rect x="298" y="272" width="84" height="16" rx="4" fill="#ff4a1c" opacity="0.15"/>
+          <text x="340" y="283" text-anchor="middle" fill="#ff6a3d" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="1">ML ENGINEER</text>
+          <circle cx="310" cy="342" r="3" fill="#ff4a1c" opacity="0.8"/>
+          <circle cx="320" cy="342" r="3" fill="#ff4a1c" opacity="0.8"/>
+          <circle cx="330" cy="342" r="3" fill="#ff4a1c" opacity="0.5"/>
+          <rect x="338" y="336" width="52" height="14" rx="7" fill="#ff4a1c" opacity="0.15" stroke="#ff4a1c" stroke-width="0.5"/>
+          <text x="364" y="346" text-anchor="middle" fill="#ff4a1c" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="700">✓ MATCHED</text>
+
+          <!-- Top-left: Cloud Architect -->
+          <rect x="96" y="110" width="104" height="70" rx="10" fill="url(#cardGrad2)" stroke="#ff4a1c" stroke-width="0.8" stroke-opacity="0.25"/>
+          <circle cx="148" cy="145" r="26" fill="#161616"/>
+          <circle cx="148" cy="145" r="18" fill="url(#avatarGrad3)" opacity="0.8"/>
+          <circle cx="148" cy="140" r="6" fill="white" opacity="0.9"/>
+          <path d="M138 155 Q148 148 158 155" fill="white" opacity="0.7"/>
+          <text x="148" y="114" text-anchor="middle" fill="#ff4a1c" font-size="6.5" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="1" opacity="0.7">CLOUD ARCH.</text>
+          <circle cx="110" cy="170" r="2.5" fill="#ff4a1c" opacity="0.6"/>
+          <circle cx="118" cy="170" r="2.5" fill="#ff4a1c" opacity="0.6"/>
+          <circle cx="126" cy="170" r="2.5" fill="#ff4a1c" opacity="0.4"/>
+          <text x="158" y="173" fill="#ff4a1c" font-size="6" font-family="Space Grotesk, sans-serif" font-weight="600" opacity="0.7">72hrs</text>
+
+          <!-- Top-right: AI Engineer -->
+          <rect x="260" y="110" width="104" height="70" rx="10" fill="url(#cardGrad2)" stroke="#ff4a1c" stroke-width="0.8" stroke-opacity="0.25"/>
+          <circle cx="312" cy="145" r="26" fill="#161616"/>
+          <circle cx="312" cy="145" r="18" fill="url(#avatarGrad1)" opacity="0.8"/>
+          <circle cx="312" cy="140" r="6" fill="white" opacity="0.9"/>
+          <path d="M302 155 Q312 148 322 155" fill="white" opacity="0.7"/>
+          <text x="312" y="114" text-anchor="middle" fill="#ff4a1c" font-size="6.5" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="1" opacity="0.7">AI ENGINEER</text>
+          <circle cx="276" cy="170" r="2.5" fill="#ff4a1c" opacity="0.6"/>
+          <circle cx="284" cy="170" r="2.5" fill="#ff4a1c" opacity="0.6"/>
+          <circle cx="292" cy="170" r="2.5" fill="#ff4a1c" opacity="0.6"/>
+          <text x="302" y="173" fill="#ff4a1c" font-size="6" font-family="Space Grotesk, sans-serif" font-weight="600" opacity="0.7">48hrs</text>
+
+          <!-- ── FLOATING STATS CHIPS ── -->
+
+          <!-- Left floating chip: Talent Pool -->
+          <g transform="translate(18, 195)">
+            <rect width="96" height="38" rx="8" fill="#1a1a1a" stroke="#ff4a1c" stroke-width="0.8" stroke-opacity="0.4"/>
+            <circle cx="16" cy="19" r="8" fill="#ff4a1c" opacity="0.15"/>
+            <text x="16" y="23" text-anchor="middle" fill="#ff4a1c" font-size="10" font-family="Space Grotesk, sans-serif" font-weight="700">★</text>
+            <text x="30" y="14" fill="white" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600" opacity="0.5">TALENT POOL</text>
+            <text x="30" y="28" fill="#ff4a1c" font-size="12" font-family="Space Grotesk, sans-serif" font-weight="800">5,000+</text>
+            <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite"/>
+          </g>
+
+          <!-- Right floating chip: Avg. Time -->
+          <g transform="translate(346, 195)">
+            <rect width="96" height="38" rx="8" fill="#1a1a1a" stroke="#ff4a1c" stroke-width="0.8" stroke-opacity="0.4"/>
+            <circle cx="16" cy="19" r="8" fill="#ff4a1c" opacity="0.15"/>
+            <text x="16" y="23" text-anchor="middle" fill="#ff4a1c" font-size="9" font-family="Space Grotesk, sans-serif" font-weight="700">⚡</text>
+            <text x="30" y="14" fill="white" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600" opacity="0.5">AVG. PLACE</text>
+            <text x="30" y="28" fill="#ff4a1c" font-size="12" font-family="Space Grotesk, sans-serif" font-weight="800">72 hrs</text>
+            <animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite"/>
+          </g>
+
+          <!-- Bottom center chip: Active Placements -->
+          <g transform="translate(152, 378)">
+            <rect width="156" height="36" rx="8" fill="#1a1a1a" stroke="#ff4a1c" stroke-width="0.8" stroke-opacity="0.4"/>
+            <!-- Pulsing dot -->
+            <circle cx="16" cy="18" r="5" fill="#22c55e" opacity="0.9">
+              <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <text x="28" y="13" fill="white" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600" opacity="0.5">ACTIVE PLACEMENTS</text>
+            <text x="28" y="28" fill="#ff4a1c" font-size="12" font-family="Space Grotesk, sans-serif" font-weight="800">38 This Month</text>
+          </g>
+
+          <!-- ── FLOATING SKILL TAGS ── -->
+          <!-- Python tag -->
+          <g transform="translate(52, 228)">
+            <rect width="52" height="18" rx="9" fill="#ff4a1c" fill-opacity="0.12" stroke="#ff4a1c" stroke-width="0.5" stroke-opacity="0.5"/>
+            <text x="26" y="12.5" text-anchor="middle" fill="#ff6a3d" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600">Python</text>
+          </g>
+          <!-- TensorFlow tag -->
+          <g transform="translate(56, 250)">
+            <rect width="62" height="18" rx="9" fill="#ff4a1c" fill-opacity="0.08" stroke="#ff4a1c" stroke-width="0.5" stroke-opacity="0.35"/>
+            <text x="31" y="12.5" text-anchor="middle" fill="#ff6a3d" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600">TensorFlow</text>
+          </g>
+          <!-- AWS tag -->
+          <g transform="translate(346, 228)">
+            <rect width="40" height="18" rx="9" fill="#ff4a1c" fill-opacity="0.12" stroke="#ff4a1c" stroke-width="0.5" stroke-opacity="0.5"/>
+            <text x="20" y="12.5" text-anchor="middle" fill="#ff6a3d" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600">AWS</text>
+          </g>
+          <!-- GenAI tag -->
+          <g transform="translate(340, 250)">
+            <rect width="52" height="18" rx="9" fill="#ff4a1c" fill-opacity="0.08" stroke="#ff4a1c" stroke-width="0.5" stroke-opacity="0.35"/>
+            <text x="26" y="12.5" text-anchor="middle" fill="#ff6a3d" font-size="7" font-family="Space Grotesk, sans-serif" font-weight="600">GenAI</text>
+          </g>
+
+          <!-- Animated traveling dot on center→bottom-left line -->
+          <circle r="3" fill="#ff4a1c" opacity="0.9" filter="url(#glow)">
+            <animateMotion dur="2.5s" repeatCount="indefinite">
+              <mpath href="#path1"/>
+            </animateMotion>
+          </circle>
+          <path id="path1" d="M230 228 L115 310" stroke="none"/>
+
+          <!-- Animated traveling dot on center→bottom-right line -->
+          <circle r="3" fill="#ff4a1c" opacity="0.9" filter="url(#glow)">
+            <animateMotion dur="3s" repeatCount="indefinite" begin="0.5s">
+              <mpath href="#path2"/>
+            </animateMotion>
+          </circle>
+          <path id="path2" d="M230 228 L345 310" stroke="none"/>
+
+          <!-- Animated traveling dot on center→top-left -->
+          <circle r="2.5" fill="#ff4a1c" opacity="0.7" filter="url(#glow)">
+            <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s">
+              <mpath href="#path3"/>
+            </animateMotion>
+          </circle>
+          <path id="path3" d="M230 190 L148 145" stroke="none"/>
+
+          <!-- Animated traveling dot on center→top-right -->
+          <circle r="2.5" fill="#ff4a1c" opacity="0.7" filter="url(#glow)">
+            <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s">
+              <mpath href="#path4"/>
+            </animateMotion>
+          </circle>
+          <path id="path4" d="M230 190 L312 145" stroke="none"/>
+
+        </svg>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
+      <div class="text-white/30 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">Scroll</div>
+      <div class="w-[1px] h-8 bg-gradient-to-b from-primary/60 to-transparent"></div>
+    </div>
+  </section>
+  <div class="w-full h-[1px] bg-border"></div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="py-[90px] px-6 bg-light-bg text-body">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="text-center max-w-[660px] mx-auto mb-16 reveal">
+        <div class="section-tag justify-center font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">Latest Service</div>
+        <div class="section-heading text-[clamp(2.2rem,4.5vw,3.2rem)] font-display font-extrabold text-heading">Transforming Data Into <span class="text-primary">Smart Business</span> Decisions</div>
+      </div>
+
+      <div class="svc-row grid grid-cols-[60px_1fr] grid-rows-[auto_auto_auto] md:grid-cols-[80px_280px_1fr_auto] md:grid-rows-1 items-center gap-y-3 gap-x-4 md:gap-[32px] py-7 md:py-9 cursor-pointer transition-colors duration-200 hover:bg-black/5 reveal" onclick="showPage('services')">
+        <div class="svc-icon-wrap w-14 h-14 md:w-[72px] md:h-[72px] bg-white border border-border rounded-[10px] flex items-center justify-center shrink-0 transition-all duration-300">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.4"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="svc-title font-display text-[1.05rem] md:text-[1.25rem] font-bold text-heading transition-colors duration-300 leading-[1.3]">IT Staffing Augmentation</div>
+        <div class="svc-desc col-span-full md:col-auto text-[0.9rem] leading-[1.75] text-body">Scale your tech team instantly with pre-vetted engineers and data professionals ready to deploy in 72 hours — no lengthy hiring cycles.</div>
+        <div class="svc-btn col-span-full md:col-auto w-fit whitespace-nowrap border-[1.5px] border-heading text-heading font-display text-[0.78rem] font-bold tracking-[0.08em] px-6 py-2.5 rounded-[3px] transition-all duration-300 shrink-0">READ MORE</div>
+      </div>
+      <div class="w-full h-[1px] bg-border"></div>
+
+      <div class="svc-row grid grid-cols-[60px_1fr] grid-rows-[auto_auto_auto] md:grid-cols-[80px_280px_1fr_auto] md:grid-rows-1 items-center gap-y-3 gap-x-4 md:gap-[32px] py-7 md:py-9 cursor-pointer transition-colors duration-200 hover:bg-black/5 reveal" onclick="showPage('services')">
+        <div class="svc-icon-wrap w-14 h-14 md:w-[72px] md:h-[72px] bg-white border border-border rounded-[10px] flex items-center justify-center shrink-0 transition-all duration-300">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
+        </div>
+        <div class="svc-title font-display text-[1.05rem] md:text-[1.25rem] font-bold text-heading transition-colors duration-300 leading-[1.3]">AI & Machine Learning</div>
+        <div class="svc-desc col-span-full md:col-auto text-[0.9rem] leading-[1.75] text-body">Build intelligent systems that learn, predict, and automate — from predictive analytics models to production-grade deep learning solutions.</div>
+        <div class="svc-btn col-span-full md:col-auto w-fit whitespace-nowrap border-[1.5px] border-heading text-heading font-display text-[0.78rem] font-bold tracking-[0.08em] px-6 py-2.5 rounded-[3px] transition-all duration-300 shrink-0">READ MORE</div>
+      </div>
+      <div class="w-full h-[1px] bg-border"></div>
+
+      <div class="svc-row grid grid-cols-[60px_1fr] grid-rows-[auto_auto_auto] md:grid-cols-[80px_280px_1fr_auto] md:grid-rows-1 items-center gap-y-3 gap-x-4 md:gap-[32px] py-7 md:py-9 cursor-pointer transition-colors duration-200 hover:bg-black/5 reveal" onclick="showPage('services')">
+        <div class="svc-icon-wrap w-14 h-14 md:w-[72px] md:h-[72px] bg-white border border-border rounded-[10px] flex items-center justify-center shrink-0 transition-all duration-300">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.4"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><rect x="2" y="18" width="20" height="2" rx="1"/></svg>
+        </div>
+        <div class="svc-title font-display text-[1.05rem] md:text-[1.25rem] font-bold text-heading transition-colors duration-300 leading-[1.3]">Data Science & Analytics</div>
+        <div class="svc-desc col-span-full md:col-auto text-[0.9rem] leading-[1.75] text-body">Transform raw data into strategic insights. We build dashboards, pipelines, and analytical models that drive measurable business decisions.</div>
+        <div class="svc-btn col-span-full md:col-auto w-fit whitespace-nowrap border-[1.5px] border-heading text-heading font-display text-[0.78rem] font-bold tracking-[0.08em] px-6 py-2.5 rounded-[3px] transition-all duration-300 shrink-0">READ MORE</div>
+      </div>
+      <div class="w-full h-[1px] bg-border"></div>
+
+      <div class="svc-row grid grid-cols-[60px_1fr] grid-rows-[auto_auto_auto] md:grid-cols-[80px_280px_1fr_auto] md:grid-rows-1 items-center gap-y-3 gap-x-4 md:gap-[32px] py-7 md:py-9 cursor-pointer transition-colors duration-200 hover:bg-black/5 reveal" onclick="showPage('services')">
+        <div class="svc-icon-wrap w-14 h-14 md:w-[72px] md:h-[72px] bg-white border border-border rounded-[10px] flex items-center justify-center shrink-0 transition-all duration-300">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.4"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="svc-title font-display text-[1.05rem] md:text-[1.25rem] font-bold text-heading transition-colors duration-300 leading-[1.3]">Cloud & Automation</div>
+        <div class="svc-desc col-span-full md:col-auto text-[0.9rem] leading-[1.75] text-body">Migrate, optimize, and automate your infrastructure across AWS, Azure, and GCP for peak performance and significant cost savings.</div>
+        <div class="svc-btn col-span-full md:col-auto w-fit whitespace-nowrap border-[1.5px] border-heading text-heading font-display text-[0.78rem] font-bold tracking-[0.08em] px-6 py-2.5 rounded-[3px] transition-all duration-300 shrink-0">READ MORE</div>
+      </div>
+    </div>
+  </section>
+  <div class="w-full h-[1px] bg-border"></div>
+
+  <!-- WHY CHOOSE US -->
+  <section class="py-[90px] px-6 bg-light-bg text-body">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+      <div class="reveal">
+        <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">Why Choose Us</div>
+        <div class="section-heading font-display text-[clamp(1.9rem,3.5vw,2.8rem)] font-extrabold leading-[1.15] text-heading mb-4">Built for Businesses That <span class="text-primary">Demand More</span></div>
+        <p class="leading-[1.8] mb-9 text-body">We're not just a vendor — we're a growth partner. Our approach combines deep domain expertise with cutting-edge AI to deliver outcomes that matter.</p>
+        <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-[22px] py-[10px] rounded transition-all duration-300 inline-block no-underline" onclick="showPage('about')">Learn About Us</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal reveal-delay-1">
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1">
+          <div class="text-primary mb-3.5"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Fast Hiring</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">Place top talent in as fast as 72 hours, not weeks.</p>
+        </div>
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1">
+          <div class="text-primary mb-3.5"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Expert Talent</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">Pre-screened professionals with proven track records.</p>
+        </div>
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1">
+          <div class="text-primary mb-3.5"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 1-2-2V9m6 5h10a2 2 0 0 0 2-2V9m0 0H5"/></svg></div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">AI-Driven Approach</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">We use AI tools to optimize every engagement.</p>
+        </div>
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1">
+          <div class="text-primary mb-3.5"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Cost-Effective</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">Premium outcomes at competitive, transparent pricing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="w-full h-[1px] bg-border"></div>
+
+  <!-- STATS BAR -->
+  <section class="py-[60px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center reveal">
+      <div class="py-5 md:border-r border-border">
+        <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="150" data-suffix="+">0+</div>
+        <div class="text-[0.85rem] mt-1.5 font-medium text-heading font-display">Projects Completed</div>
+      </div>
+      <div class="py-5 md:border-r border-border">
+        <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="80" data-suffix="+">0+</div>
+        <div class="text-[0.85rem] mt-1.5 font-medium text-heading font-display">Happy Clients</div>
+      </div>
+      <div class="py-5 md:border-r border-border">
+        <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="50" data-suffix="+">0+</div>
+        <div class="text-[0.85rem] mt-1.5 font-medium text-heading font-display">Expert Professionals</div>
+      </div>
+      <div class="py-5">
+        <div class="stat-number font-display text-[2.8rem] font-extrabold text-primary leading-none" data-target="5" data-suffix="+">0+</div>
+        <div class="text-[0.85rem] mt-1.5 font-medium text-heading font-display">Years of Excellence</div>
+      </div>
+    </div>
+  </section>
+  <div class="w-full h-[1px] bg-border"></div>
+
+  <!-- CTA -->
+  <section class="bg-dark2 relative overflow-hidden py-[90px] px-6 text-center">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-full bg-[radial-gradient(ellipse,rgba(255,74,28,0.12)_0%,transparent_70%)] pointer-events-none"></div>
+    <div class="max-w-[700px] mx-auto relative z-10 reveal">
+      <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary/80 mb-3 flex items-center justify-center gap-2.5">Get Started Today</div>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-extrabold text-white mb-5 leading-[1.15]">Ready to Scale Your Business<br>with Data & AI?</h2>
+      <p class="text-white/55 text-[1rem] leading-[1.75] mb-9">Let's build something powerful together. Whether you need top talent or intelligent data solutions — we've got you covered.</p>
+      <div class="flex gap-3.5 justify-center flex-wrap">
+        <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-8 py-3.5 rounded transition-all duration-300 inline-block no-underline" onclick="showPage('contact')">Start a Conversation</a>
+        <a class="btn-outline bg-transparent text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-8 py-3.5 rounded border-[1.5px] border-white/30 transition-all duration-300 inline-block no-underline" onclick="showPage('services')">View Services</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== ABOUT PAGE ====================== -->
+<div id="page-about" class="page mt-[70px]">
+  <div class="bg-dark2 pt-[100px] pb-[60px]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary/70 mb-3 flex items-center gap-2.5">Who We Are</div>
+      <h1 class="text-[clamp(2rem,4vw,3rem)] text-white font-extrabold mb-3 font-display">About Data Cliniq</h1>
+      <p class="text-white/45 text-[0.9rem]">Home / About Us</p>
+    </div>
+  </div>
+
+  <section class="py-[90px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+      <div class="reveal">
+        <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">Our Story</div>
+        <div class="section-heading font-display text-[clamp(1.9rem,3.5vw,2.8rem)] font-extrabold leading-[1.15] text-heading mb-4">Healing Businesses with <span class="text-primary">Data & Talent</span></div>
+        <p class="leading-[1.85] mb-5 text-body">Data Cliniq was born from a simple belief: businesses deserve access to world-class data expertise and talent — without the friction. Like a clinic that heals, we diagnose your business challenges and prescribe intelligent, data-driven solutions.</p>
+        <p class="leading-[1.85] mb-8 text-body">Founded in India, we work with startups, mid-market companies, and enterprises globally — helping them harness the power of AI, machine learning, and strategic talent to achieve breakthrough growth.</p>
+        <div class="flex gap-6 flex-wrap">
+          <div class="text-center">
+            <div class="stat-number font-display text-[2rem] font-extrabold text-primary leading-none">150+</div>
+            <div class="text-[0.82rem] mt-1 text-body font-display font-medium">Projects</div>
+          </div>
+          <div class="w-[1px] bg-border"></div>
+          <div class="text-center">
+            <div class="stat-number font-display text-[2rem] font-extrabold text-primary leading-none">80+</div>
+            <div class="text-[0.82rem] mt-1 text-body font-display font-medium">Clients</div>
+          </div>
+          <div class="w-[1px] bg-border"></div>
+          <div class="text-center">
+            <div class="stat-number font-display text-[2rem] font-extrabold text-primary leading-none">5+</div>
+            <div class="text-[0.82rem] mt-1 text-body font-display font-medium">Years</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="bg-light-bg border border-border rounded-xl p-10 relative">
+          <div class="absolute -top-3 left-[30px] bg-primary text-white font-display text-[0.75rem] font-bold tracking-[0.08em] px-3.5 py-1 rounded-full uppercase">Our Approach</div>
+          
+          <div class="flex gap-6 items-start py-7 border-b border-border">
+            <div class="w-[42px] h-[42px] shrink-0 font-display text-[1rem] font-extrabold text-primary bg-primary/10 border border-primary/20 rounded-md flex items-center justify-center">01</div>
+            <div>
+              <h4 class="text-[0.95rem] font-bold mb-1 text-heading font-display">Diagnose</h4>
+              <p class="text-[0.85rem] leading-[1.65] text-body">We analyze your business challenges and identify where data and talent can create the most impact.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start py-7 border-b border-border">
+            <div class="w-[42px] h-[42px] shrink-0 font-display text-[1rem] font-extrabold text-primary bg-primary/10 border border-primary/20 rounded-md flex items-center justify-center">02</div>
+            <div>
+              <h4 class="text-[0.95rem] font-bold mb-1 text-heading font-display">Prescribe</h4>
+              <p class="text-[0.85rem] leading-[1.65] text-body">We design tailored solutions — from staffing strategies to AI model architectures — built for your needs.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start py-7">
+            <div class="w-[42px] h-[42px] shrink-0 font-display text-[1rem] font-extrabold text-primary bg-primary/10 border border-primary/20 rounded-md flex items-center justify-center">03</div>
+            <div>
+              <h4 class="text-[0.95rem] font-bold mb-1 text-heading font-display">Deliver</h4>
+              <p class="text-[0.85rem] leading-[1.65] text-body">We execute with precision, speed, and quality — delivering measurable results that grow your business.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="w-full h-[1px] bg-border"></div>
+
+  <section class="py-[90px] px-6 bg-light-bg text-body">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="text-center mb-[60px] reveal">
+        <div class="section-tag justify-center font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">What Drives Us</div>
+        <div class="section-heading font-display text-[clamp(1.9rem,3.5vw,2.8rem)] font-extrabold leading-[1.15] text-heading mb-4">Mission & <span class="text-primary">Vision</span></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-border rounded-[10px] p-[48px_40px] relative overflow-hidden reveal">
+          <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+          <div class="text-primary mb-5">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 class="font-display text-[1.4rem] font-extrabold mb-4 text-heading">Our Mission</h3>
+          <p class="leading-[1.85] text-body">To democratize access to AI and data science capabilities for businesses of all sizes, while connecting organizations with the exceptional talent they need to thrive in a competitive landscape. We believe every business deserves a data-intelligent future.</p>
+        </div>
+        <div class="bg-white border border-border rounded-[10px] p-[48px_40px] relative overflow-hidden reveal reveal-delay-1">
+          <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+          <div class="text-primary mb-5">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="font-display text-[1.4rem] font-extrabold mb-4 text-heading">Our Vision</h3>
+          <p class="leading-[1.85] text-body">To be the most trusted AI and talent partner for growth-stage businesses globally — a company where data science meets human ingenuity. We envision a world where every business decision is powered by clean data, smart models, and brilliant people.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="w-full h-[1px] bg-border"></div>
+
+  <section class="py-[90px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="text-center mb-[60px] reveal">
+        <div class="section-tag justify-center font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">Core Values</div>
+        <div class="section-heading font-display text-[clamp(1.9rem,3.5vw,2.8rem)] font-extrabold leading-[1.15] text-heading mb-4">What We <span class="text-primary">Stand For</span></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-center">
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal">
+          <div class="text-[2.2rem] mb-3">🎯</div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Precision</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">We obsess over accuracy in every model, match, and deliverable.</p>
+        </div>
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal reveal-delay-1">
+          <div class="text-[2.2rem] mb-3">⚡</div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Speed</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">Fast execution without compromising on quality or reliability.</p>
+        </div>
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal reveal-delay-2">
+          <div class="text-[2.2rem] mb-3">🤝</div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Partnership</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">We treat your success as our own — long-term relationships matter.</p>
+        </div>
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal reveal-delay-3">
+          <div class="text-[2.2rem] mb-3">🔬</div>
+          <h4 class="text-[1rem] font-bold mb-2 text-heading font-display">Innovation</h4>
+          <p class="text-[0.85rem] leading-[1.65] text-body">Constantly pushing boundaries with the latest AI and data tech.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark2 relative overflow-hidden py-20 px-6 text-center">
+    <div class="max-w-[600px] mx-auto relative z-10 reveal">
+      <h2 class="font-display text-[2.2rem] font-extrabold text-white mb-4">Let's Work Together</h2>
+      <p class="text-white/50 mb-7">Ready to transform your business with data and AI? We'd love to hear from you.</p>
+      <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-[22px] py-[10px] rounded transition-all duration-300 inline-block no-underline" onclick="showPage('contact')">Contact Us Today</a>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== SERVICES PAGE ====================== -->
+<div id="page-services" class="page mt-[70px]">
+  <div class="bg-dark2 pt-[100px] pb-[60px]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary/70 mb-3 flex items-center gap-2.5">What We Offer</div>
+      <h1 class="font-display text-[clamp(2rem,4vw,3rem)] font-extrabold text-white mb-3">Our Services</h1>
+      <p class="text-white/45 text-[0.9rem]">Home / Services</p>
+    </div>
+  </div>
+  <section class="py-[90px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto">
+      
+      <div class="service-detail p-[28px_20px] md:p-[50px_40px] border border-border rounded-[10px] bg-white mb-6 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 reveal">
+        <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-7 items-start">
+          <div class="w-16 h-16 bg-primary/10 border border-primary/15 rounded-xl flex items-center justify-center shrink-0">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase mb-3 font-display">Staffing</div>
+            <h2 class="font-display text-[1.6rem] font-extrabold mb-3.5 text-heading">IT Staffing Augmentation</h2>
+            <p class="leading-[1.85] max-w-[720px] mb-6 text-body">We provide on-demand access to skilled technology professionals who integrate seamlessly with your existing teams. Whether you need one specialist or an entire squad, we deliver talent that hits the ground running — bridging critical skill gaps and accelerating your product development cycles.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-[600px]">
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Data Engineers & Scientists</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">ML Engineers & AI Specialists</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Cloud & DevOps Engineers</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Business Intelligence Analysts</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">72-Hour Placement Guarantee</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Contract & Full-Time Options</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-detail p-[28px_20px] md:p-[50px_40px] border border-border rounded-[10px] bg-white mb-6 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 reveal">
+        <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-7 items-start">
+          <div class="w-16 h-16 bg-primary/10 border border-primary/15 rounded-xl flex items-center justify-center shrink-0">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase mb-3 font-display">Artificial Intelligence</div>
+            <h2 class="font-display text-[1.6rem] font-extrabold mb-3.5 text-heading">AI & Machine Learning</h2>
+            <p class="leading-[1.85] max-w-[720px] mb-6 text-body">From proof-of-concept to production-scale AI systems, we design and build intelligent solutions that automate workflows, predict outcomes, and unlock new revenue streams. Our ML engineers bring expertise across the full model lifecycle — from data preparation to deployment and monitoring.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-[600px]">
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Predictive Analytics Models</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Natural Language Processing (NLP)</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Computer Vision Solutions</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Recommendation Engines</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">MLOps & Model Monitoring</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">GenAI & LLM Integration</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-detail p-[28px_20px] md:p-[50px_40px] border border-border rounded-[10px] bg-white mb-6 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 reveal">
+        <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-7 items-start">
+          <div class="w-16 h-16 bg-primary/10 border border-primary/15 rounded-xl flex items-center justify-center shrink-0">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div>
+            <div class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase mb-3 font-display">Analytics</div>
+            <h2 class="font-display text-[1.6rem] font-extrabold mb-3.5 text-heading">Data Science & Analytics</h2>
+            <p class="leading-[1.85] max-w-[720px] mb-6 text-body">We help you make sense of your data — building robust pipelines, interactive dashboards, and analytical frameworks that turn noise into clarity. Our data scientists work alongside your team to surface insights that drive revenue, reduce costs, and improve operations.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-[600px]">
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Data Pipeline Engineering</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Business Intelligence Dashboards</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Data Warehousing & Lakehouse</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Statistical Modeling & A/B Testing</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Real-Time Analytics</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Customer & Market Analytics</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-detail p-[28px_20px] md:p-[50px_40px] border border-border rounded-[10px] bg-white mb-6 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)] hover:-translate-y-1 reveal">
+        <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-7 items-start">
+          <div class="w-16 h-16 bg-primary/10 border border-primary/15 rounded-xl flex items-center justify-center shrink-0">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase mb-3 font-display">Infrastructure</div>
+            <h2 class="font-display text-[1.6rem] font-extrabold mb-3.5 text-heading">Cloud & Automation</h2>
+            <p class="leading-[1.85] max-w-[720px] mb-6 text-body">Modernize your infrastructure with cloud-native architectures and intelligent automation. We help businesses migrate to the cloud, optimize costs, and automate repetitive workflows — freeing your team to focus on what matters most: innovation and growth.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-[600px]">
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">AWS, Azure, GCP & Oracle Migration</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">CI/CD Pipeline Automation</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Kubernetes & Docker Orchestration</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Infrastructure as Code (Terraform)</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Cost Optimization & FinOps</span></div>
+              <div class="flex items-start gap-2.5"><div class="w-[18px] h-[18px] bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-[0.88rem] leading-[1.6] text-heading">Security & Compliance Automation</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bg-dark2 relative overflow-hidden py-20 px-6 text-center">
+    <div class="max-w-[600px] mx-auto relative z-10 reveal">
+      <h2 class="font-display text-[2.2rem] font-extrabold text-white mb-4">Ready to Get Started?</h2>
+      <p class="text-white/50 mb-7">Tell us about your project and we'll craft a tailored solution for you.</p>
+      <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-[22px] py-[10px] rounded transition-all duration-300 inline-block no-underline" onclick="showPage('contact')">Start Your Project</a>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== INDUSTRIES PAGE ====================== -->
+<div id="page-industries" class="page mt-[70px]">
+  <div class="bg-dark2 pt-[100px] pb-[60px]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary/70 mb-3 flex items-center gap-2.5">Who We Serve</div>
+      <h1 class="font-display text-[clamp(2rem,4vw,3rem)] font-extrabold text-white mb-3">Industry Expertise</h1>
+      <p class="text-white/45 text-[0.9rem]">Home / Industries</p>
+    </div>
+  </div>
+
+  <section class="py-[90px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="text-center max-w-[600px] mx-auto mb-[60px] reveal">
+        <div class="section-tag justify-center font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">Sectors</div>
+        <div class="section-heading font-display text-[clamp(1.9rem,3.5vw,2.8rem)] font-extrabold leading-[1.15] text-heading mb-4">Data Solutions Tailored for <span class="text-primary">Your Sector</span></div>
+        <p class="text-body">We apply our robust frameworks across various industries for optimal data performance.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-[1.5rem]">🏥</div>
+              <h3 class="font-display text-[1.4rem] font-bold text-heading">Healthcare & Life Sciences</h3>
+            </div>
+            <p class="text-[0.9rem] leading-[1.7] text-body mb-5">Advancing personalized care through optimized systems. We develop diagnostic logic supporting professional decision-making safely.</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Clinical image processing pipelines</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Electronic Health Record integrations</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Predictive appointment allocation tools</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-border flex items-center gap-4">
+            <div class="text-[1.5rem] font-extrabold font-display text-primary">40%</div>
+            <div class="text-[0.75rem] text-[#999] uppercase tracking-wide font-medium">Reduction in overhead</div>
+          </div>
+        </div>
+
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal reveal-delay-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-[1.5rem]">💳</div>
+              <h3 class="font-display text-[1.4rem] font-bold text-heading">Finance & Fintech</h3>
+            </div>
+            <p class="text-[0.9rem] leading-[1.7] text-body mb-5">Enhancing algorithmic transaction visibility securely. Deploy quantitative methodologies preventing compliance failures gracefully.</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Automated anomaly flags</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Complex ledger risk matrices</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Algorithmic reporting generators</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-border flex items-center gap-4">
+            <div class="text-[1.5rem] font-extrabold font-display text-primary">99.5%</div>
+            <div class="text-[0.75rem] text-[#999] uppercase tracking-wide font-medium">Detection Precision Rating</div>
+          </div>
+        </div>
+
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-[1.5rem]">🛒</div>
+              <h3 class="font-display text-[1.4rem] font-bold text-heading">Retail & E-commerce</h3>
+            </div>
+            <p class="text-[0.9rem] leading-[1.7] text-body mb-5">Matching buyer profiles directly. Implement predictive pipelines ensuring warehouses coordinate directly with demand fluctuations.</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Personalized search models</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Real-time pricing adjustments</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Supply replenishment scripts</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-border flex items-center gap-4">
+            <div class="text-[1.5rem] font-extrabold font-display text-primary">2.5x</div>
+            <div class="text-[0.75rem] text-[#999] uppercase tracking-wide font-medium">Rise In Repeat Action</div>
+          </div>
+        </div>
+
+        <div class="why-card bg-white border border-border rounded-lg px-[28px] py-[32px] transition-all duration-300 hover:border-primary hover:shadow-[0_10px_30px_rgba(255,74,28,0.08)] hover:-translate-y-1 reveal reveal-delay-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-[1.5rem]">🏭</div>
+              <h3 class="font-display text-[1.4rem] font-bold text-heading">Logistics & Manufacturing</h3>
+            </div>
+            <p class="text-[0.9rem] leading-[1.7] text-body mb-5">Upgrading overall equipment effectiveness. Intervene before hardware fatigue causes expensive structural delays.</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Preventative machine audits</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Spatial payload mappings</div>
+              <div class="flex items-center gap-2 text-[0.85rem] text-body"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Routing priority indicators</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-border flex items-center gap-4">
+            <div class="text-[1.5rem] font-extrabold font-display text-primary">30%</div>
+            <div class="text-[0.75rem] text-[#999] uppercase tracking-wide font-medium">Drop In Material Downtime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark2 relative overflow-hidden py-20 px-6 text-center">
+    <div class="max-w-[600px] mx-auto relative z-10 reveal">
+      <h2 class="font-display text-[2.2rem] font-extrabold text-white mb-4">Your Industry, Our Expertise</h2>
+      <p class="text-white/50 mb-7">Let's discuss how data and AI can transform your specific sector.</p>
+      <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.85rem] tracking-[0.04em] px-[22px] py-[10px] rounded transition-all duration-300 inline-block no-underline" onclick="showPage('contact')">Start a Conversation</a>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== BLOG PAGE ====================== -->
+<div id="page-blog" class="page mt-[70px]">
+  <div class="bg-dark2 pt-[100px] pb-[60px]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary/70 mb-3 flex items-center gap-2.5">Knowledge Hub</div>
+      <h1 class="font-display text-[clamp(2rem,4vw,3rem)] font-extrabold text-white mb-3">Blog & Insights</h1>
+      <p class="text-white/45 text-[0.9rem]">Home / Blog</p>
+    </div>
+  </div>
+
+  <section class="py-[90px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="blog-card bg-white border border-border rounded-[10px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] reveal cursor-pointer">
+          <div class="h-[220px] bg-gradient-to-br from-[#111] to-[#1e1e1e] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,74,28,0.15),transparent_60%)]"></div>
+            <div class="text-center relative">
+              <div class="text-[3.5rem] mb-2">🤖</div>
+              <div class="text-white/35 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">Artificial Intelligence</div>
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2.5 mb-3.5 flex-wrap">
+              <span class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase font-display">AI Trends</span>
+              <span class="text-[#bbb] text-[0.78rem]">· April 15, 2025</span>
+            </div>
+            <h3 class="font-display text-[1.1rem] font-bold leading-[1.45] mb-3 text-heading">The Future of AI: What Businesses Need to Know in 2025</h3>
+            <p class="text-[0.87rem] leading-[1.75] mb-5 text-body">From agentic AI to multimodal models — here's what the next wave of artificial intelligence means for your business strategy.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-[0.85rem]">👤</div>
+                <span class="text-[0.82rem] font-medium text-heading">Arjun Sharma</span>
+              </div>
+              <span class="text-primary text-[0.82rem] font-semibold">5 min read →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card bg-white border border-border rounded-[10px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] reveal reveal-delay-1 cursor-pointer">
+          <div class="h-[220px] bg-gradient-to-br from-[#0a0a14] to-[#141420] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,74,28,0.12),transparent_60%)]"></div>
+            <div class="text-center relative">
+              <div class="text-[3.5rem] mb-2">📊</div>
+              <div class="text-white/35 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">Data Science</div>
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2.5 mb-3.5 flex-wrap">
+              <span class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase font-display">Data Science</span>
+              <span class="text-[#bbb] text-[0.78rem]">· March 28, 2025</span>
+            </div>
+            <h3 class="font-display text-[1.1rem] font-bold leading-[1.45] mb-3 text-heading">Top Data Science Trends Reshaping Industries in 2025</h3>
+            <p class="text-[0.87rem] leading-[1.75] mb-5 text-body">Real-time analytics, automated feature engineering, and federated learning are no longer buzzwords.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-[0.85rem]">👤</div>
+                <span class="text-[0.82rem] font-medium text-heading">Priya Mehta</span>
+              </div>
+              <span class="text-primary text-[0.82rem] font-semibold">7 min read →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card bg-white border border-border rounded-[10px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] reveal reveal-delay-2 cursor-pointer">
+          <div class="h-[220px] bg-gradient-to-br from-[#100a0a] to-[#1e1010] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,74,28,0.1),transparent_60%)]"></div>
+            <div class="text-center relative">
+              <div class="text-[3.5rem] mb-2">💼</div>
+              <div class="text-white/35 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">Staffing</div>
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2.5 mb-3.5 flex-wrap">
+              <span class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase font-display">Hiring</span>
+              <span class="text-[#bbb] text-[0.78rem]">· March 10, 2025</span>
+            </div>
+            <h3 class="font-display text-[1.1rem] font-bold leading-[1.45] mb-3 text-heading">Modern Hiring Strategies: How AI Is Transforming Talent</h3>
+            <p class="text-[0.87rem] leading-[1.75] mb-5 text-body">AI-powered screening, skills-based hiring, and workforce analytics are changing how companies find and retain top talent.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-[0.85rem]">👤</div>
+                <span class="text-[0.82rem] font-medium text-heading">Rahul Verma</span>
+              </div>
+              <span class="text-primary text-[0.82rem] font-semibold">6 min read →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card bg-white border border-border rounded-[10px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] reveal cursor-pointer">
+          <div class="h-[220px] bg-gradient-to-br from-[#0a1410] to-[#101e14] flex items-center justify-center relative overflow-hidden">
+            <div class="text-center relative">
+              <div class="text-[3.5rem] mb-2">☁️</div>
+              <div class="text-white/35 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">Cloud</div>
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2.5 mb-3.5 flex-wrap">
+              <span class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase font-display">Cloud</span>
+              <span class="text-[#bbb] text-[0.78rem]">· Feb 20, 2025</span>
+            </div>
+            <h3 class="font-display text-[1.1rem] font-bold leading-[1.45] mb-3 text-heading">Cloud Cost Optimization: Saving 40% Without Compromising</h3>
+            <p class="text-[0.87rem] leading-[1.75] mb-5 text-body">Most companies overspend on cloud by 30-40%. In this guide, we break down the exact strategies to reduce waste.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-[0.85rem]">👤</div>
+                <span class="text-[0.82rem] font-medium text-heading">Siddharth Nair</span>
+              </div>
+              <span class="text-primary text-[0.82rem] font-semibold">8 min read →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card bg-white border border-border rounded-[10px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] reveal reveal-delay-1 cursor-pointer">
+          <div class="h-[220px] bg-gradient-to-br from-[#140a14] to-[#1e101e] flex items-center justify-center relative overflow-hidden">
+            <div class="text-center relative">
+              <div class="text-[3.5rem] mb-2">🔮</div>
+              <div class="text-white/35 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">Generative AI</div>
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2.5 mb-3.5 flex-wrap">
+              <span class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase font-display">GenAI</span>
+              <span class="text-[#bbb] text-[0.78rem]">· Feb 5, 2025</span>
+            </div>
+            <h3 class="font-display text-[1.1rem] font-bold leading-[1.45] mb-3 text-heading">Building Enterprise-Grade LLM Applications: A Guide</h3>
+            <p class="text-[0.87rem] leading-[1.75] mb-5 text-body">From RAG pipelines to fine-tuning strategies, learn how to build reliable, scalable generative AI applications.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-[0.85rem]">👤</div>
+                <span class="text-[0.82rem] font-medium text-heading">Arjun Sharma</span>
+              </div>
+              <span class="text-primary text-[0.82rem] font-semibold">10 min read →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card bg-white border border-border rounded-[10px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] reveal reveal-delay-2 cursor-pointer">
+          <div class="h-[220px] bg-gradient-to-br from-[#0a0a0a] to-[#181818] flex items-center justify-center relative overflow-hidden">
+            <div class="text-center relative">
+              <div class="text-[3.5rem] mb-2">⚙️</div>
+              <div class="text-white/35 text-[0.7rem] tracking-[0.1em] uppercase font-display font-medium">MLOps</div>
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2.5 mb-3.5 flex-wrap">
+              <span class="tag inline-block bg-primary/10 text-primary text-[0.75rem] font-semibold tracking-[0.04em] px-3 py-1 rounded-full uppercase font-display">MLOps</span>
+              <span class="text-[#bbb] text-[0.78rem]">· Jan 18, 2025</span>
+            </div>
+            <h3 class="font-display text-[1.1rem] font-bold leading-[1.45] mb-3 text-heading">MLOps in 2025: Why Most ML Projects Fail in Production</h3>
+            <p class="text-[0.87rem] leading-[1.75] mb-5 text-body">87% of ML models never make it to production. We explore the operational gaps that derail AI projects.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-[0.85rem]">👤</div>
+                <span class="text-[0.82rem] font-medium text-heading">Priya Mehta</span>
+              </div>
+              <span class="text-primary text-[0.82rem] font-semibold">9 min read →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== CONTACT PAGE ====================== -->
+<div id="page-contact" class="page mt-[70px]">
+  <div class="bg-dark2 pt-[100px] pb-[60px]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary/70 mb-3 flex items-center gap-2.5">Get In Touch</div>
+      <h1 class="font-display text-[clamp(2rem,4vw,3rem)] font-extrabold text-white mb-3">Contact Us</h1>
+      <p class="text-white/45 text-[0.9rem]">Home / Contact</p>
+    </div>
+  </div>
+
+  <section class="py-[90px] px-6 bg-white text-body">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
+      
+      <!-- Contact Info -->
+      <div class="reveal">
+        <div class="section-tag font-display text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary mb-3 flex items-center gap-2.5">Reach Out</div>
+        <div class="section-heading font-display text-[2rem] font-extrabold leading-[1.15] text-heading mb-4">Let's Start a <span class="text-primary">Conversation</span></div>
+        <p class="leading-[1.85] mb-9 text-body">Whether you need top tech talent or want to explore AI solutions for your business, we're here to help. Reach out and we'll respond within 24 hours.</p>
+
+        <div class="contact-info-card flex gap-4 p-6 border border-border rounded-lg bg-white mb-4 transition-all hover:border-primary/30 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+          <div class="contact-icon w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="font-display font-semibold mb-1 text-[0.9rem] text-heading">Email Us</div>
+            <div class="text-[0.88rem] text-primary">contact@data-cliniq.com</div>
+            <div class="text-[0.82rem] text-[#999] mt-0.5">We reply within 24 hours</div>
+          </div>
+        </div>
+
+        <div class="contact-info-card flex gap-4 p-6 border border-border rounded-lg bg-white mb-4 transition-all hover:border-primary/30 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+          <div class="contact-icon w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="font-display font-semibold mb-1 text-[0.9rem] text-heading">Our Location</div>
+            <div class="text-[0.88rem] text-primary">A-58, Masoodpur, Vasant Kunj, New Delhi, Delhi 110070</div>
+            <div class="text-[0.82rem] text-[#999] mt-0.5">Serving clients globally</div>
+          </div>
+        </div>
+
+        <div class="contact-info-card flex gap-4 p-6 border border-border rounded-lg bg-white mb-4 transition-all hover:border-primary/30 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+          <div class="contact-icon w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4a1c" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="font-display font-semibold mb-1 text-[0.9rem] text-heading">Business Hours</div>
+            <div class="text-[0.88rem] text-primary">Mon–Fri, 9AM–7PM IST</div>
+            <div class="text-[0.82rem] text-[#999] mt-0.5">Urgent? Email anytime</div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <div class="font-display font-semibold mb-4 text-[0.88rem] text-heading">Follow Us</div>
+          <div class="flex gap-2.5">
+            <div class="w-10 h-10 border border-border rounded-md flex items-center justify-center text-body hover:border-primary hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div class="w-10 h-10 border border-border rounded-md flex items-center justify-center text-body hover:border-primary hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+            <div class="w-10 h-10 border border-border rounded-md flex items-center justify-center text-body hover:border-primary hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="reveal reveal-delay-1">
+        <div class="bg-white border border-border rounded-xl p-[48px]">
+          <h3 class="font-display text-[1.4rem] font-extrabold mb-2 text-heading">Send Us a Message</h3>
+          <p class="text-[0.88rem] mb-8 text-body">Fill in the form below and we'll get back to you shortly.</p>
+
+          <div id="successMsg" class="hidden bg-green-500/10 border border-green-500/30 text-green-600 p-4 rounded-md text-[0.9rem] mb-5">
+            ✓ Message sent successfully! We'll reach out within 24 hours.
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-[0.82rem] font-semibold text-heading mb-2">Full Name *</label>
+              <input type="text" id="formName" class="form-input w-full px-[18px] py-[14px] border border-border rounded-md font-sans text-[0.9rem] text-heading bg-white transition-all duration-300 outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(255,74,28,0.1)] placeholder-gray-400" placeholder="Your full name">
+            </div>
+            <div>
+              <label class="block text-[0.82rem] font-semibold text-heading mb-2">Email Address *</label>
+              <input type="email" id="formEmail" class="form-input w-full px-[18px] py-[14px] border border-border rounded-md font-sans text-[0.9rem] text-heading bg-white transition-all duration-300 outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(255,74,28,0.1)] placeholder-gray-400" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-[0.82rem] font-semibold text-heading mb-2">Phone Number</label>
+              <input type="tel" id="formPhone" class="form-input w-full px-[18px] py-[14px] border border-border rounded-md font-sans text-[0.9rem] text-heading bg-white transition-all duration-300 outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(255,74,28,0.1)] placeholder-gray-400" placeholder="+91 00000 00000">
+            </div>
+            <div>
+              <label class="block text-[0.82rem] font-semibold text-heading mb-2">Service Interested In</label>
+              <select id="formService" class="form-input w-full px-[18px] py-[14px] border border-border rounded-md font-sans text-[0.9rem] text-heading bg-white transition-all duration-300 outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(255,74,28,0.1)] placeholder-gray-400 cursor-pointer bg-none">
+                <option value="">Select a service...</option>
+                <option>IT Staffing Augmentation</option>
+                <option>AI & Machine Learning</option>
+                <option>Data Science & Analytics</option>
+                <option>Cloud & Automation</option>
+                <option>Multiple Services</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label class="block text-[0.82rem] font-semibold text-heading mb-2">Message *</label>
+            <textarea id="formMessage" class="form-input w-full px-[18px] py-[14px] border border-border rounded-md font-sans text-[0.9rem] text-heading bg-white transition-all duration-300 outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(255,74,28,0.1)] placeholder-gray-400 resize-y" rows="5" placeholder="Tell us about your project, requirements, or any questions you have..."></textarea>
+          </div>
+          <button onclick="submitForm(event)" class="btn-primary bg-primary text-white font-display font-semibold tracking-[0.04em] rounded transition-all duration-300 inline-block no-underline hover:bg-primary-dark hover:-translate-y-[1px] hover:shadow-[0_8px_25px_rgba(255,74,28,0.35)] cursor-pointer w-full py-[15px] flex items-center justify-center gap-2 text-[0.92rem]">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <p class="text-[0.78rem] text-[#bbb] text-center mt-4">By submitting, you agree to our Privacy Policy. We never spam.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="bg-dark2 border-t border-white/5 pt-10 px-6">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8 border-b border-white/5">
+      
+      <div class="lg:col-span-4">
+        <div class="font-display text-[1.2rem] font-extrabold text-white tracking-tight mb-3">Data<span class="text-primary">Cliniq</span></div>
+        <p class="text-white/40 text-[0.8rem] leading-[1.6] max-w-[260px] mb-4">Healing Businesses with Data & Talent. We combine AI expertise with strategic staffing to accelerate your growth.</p>
+        <div class="flex gap-2">
+          <div class="w-8 h-8 border border-white/10 rounded-md flex items-center justify-center text-white/50 hover:border-primary hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div class="w-8 h-8 border border-white/10 rounded-md flex items-center justify-center text-white/50 hover:border-primary hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+          <div class="w-8 h-8 border border-white/10 rounded-md flex items-center justify-center text-white/50 hover:border-primary hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="text-white font-display text-[0.8rem] font-bold tracking-[0.06em] uppercase mb-3">Quick Links</h4>
+        <div class="flex flex-col gap-2">
+          <a onclick="showPage('home')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">Home</a>
+          <a onclick="showPage('about')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">About Us</a>
+          <a onclick="showPage('industries')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">Industries</a>
+          <a onclick="showPage('blog')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">Blog</a>
+          <a onclick="showPage('contact')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">Contact</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="text-white font-display text-[0.8rem] font-bold tracking-[0.06em] uppercase mb-3">Services</h4>
+        <div class="flex flex-col gap-2">
+          <a onclick="showPage('services')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">IT Staffing</a>
+          <a onclick="showPage('services')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">AI & ML</a>
+          <a onclick="showPage('services')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">Data Science</a>
+          <a onclick="showPage('services')" class="text-white/40 text-[0.8rem] hover:text-primary transition-colors cursor-pointer">Cloud & Automation</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4">
+        <h4 class="text-white font-display text-[0.8rem] font-bold tracking-[0.06em] uppercase mb-3">Contact</h4>
+        <div class="flex flex-col gap-2">
+          <div class="flex gap-2 items-start">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,74,28,0.7)" stroke-width="1.8" class="shrink-0 mt-0.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span class="text-white/40 text-[0.8rem]">contact@data-cliniq.com</span>
+          </div>
+          <div class="flex gap-2 items-start">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,74,28,0.7)" stroke-width="1.8" class="shrink-0 mt-0.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="text-white/40 text-[0.8rem]">A-58, Masoodpur, Vasant Kunj, New Delhi, Delhi 110070 — Serving Clients Globally</span>
+          </div>
+        </div>
+        <div class="mt-4 p-4 bg-primary/5 border border-primary/10 rounded-lg">
+          <div class="text-white text-[0.8rem] font-semibold font-display mb-2">Ready to get started?</div>
+          <a class="btn-primary bg-primary text-white font-display font-semibold text-[0.75rem] tracking-[0.04em] px-4 py-2 rounded transition-all duration-300 inline-block no-underline hover:bg-primary-dark hover:-translate-y-[1px] hover:shadow-[0_8px_25px_rgba(255,74,28,0.35)] cursor-pointer" onclick="showPage('contact')">Get In Touch →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-4 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-white/25 text-[0.75rem]">© 2025 Data Cliniq. All rights reserved.</p>
+      <p class="text-white/20 text-[0.75rem]">Healing Businesses with Data & Talent</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- PAGE ROUTING ----
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    
+    const target = document.getElementById('page-' + page);
+    const navLink = document.getElementById('nav-' + page);
+    
+    if (target) { target.classList.add('active'); }
+    if (navLink) { navLink.classList.add('active'); }
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(initReveal, 100);
+    setTimeout(initCounters, 300);
+  }
+
+  // ---- MOBILE MENU ----
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden');
+      menu.classList.add('flex');
+    } else {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+    }
+    hamburger.classList.toggle('open');
+  }
+
+  // ---- NAVBAR SCROLL ----
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 20) { 
+      navbar.classList.add('bg-[#0a0a0a]/95', 'backdrop-blur-md', 'shadow-lg'); 
+      navbar.classList.remove('bg-dark2');
+    } else { 
+      navbar.classList.remove('bg-[#0a0a0a]/95', 'backdrop-blur-md', 'shadow-lg'); 
+      navbar.classList.add('bg-dark2');
+    }
+  });
+
+  // ---- SCROLL REVEAL ----
+  function initReveal() {
+    const elements = document.querySelectorAll('.page.active .reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.08 });
+    
+    elements.forEach(el => {
+      if (!el.classList.contains('visible')) { observer.observe(el); }
+      else { el.classList.add('visible'); }
+    });
+  }
+
+  // ---- ANIMATED COUNTERS ----
+  function animateCounter(el, target, suffix) {
+    let current = 0;
+    const duration = 1800;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = Math.floor(current) + (suffix || '+');
+    }, 16);
+  }
+
+  function initCounters() {
+    const page = document.querySelector('.page.active');
+    if (!page) return;
+    
+    const counters = page.querySelectorAll('.stat-number[data-target]');
+    counters.forEach(el => {
+      if (el.dataset.animated) return;
+      el.dataset.animated = 'true';
+      
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '+';
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            animateCounter(el, target, suffix);
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      obs.observe(el);
+    });
+  }
+
+  // ---- FORM SUBMIT ----
+  function submitForm(event) {
+    event.preventDefault();
+    const name = document.getElementById('formName').value.trim();
+    const email = document.getElementById('formEmail').value.trim();
+    const message = document.getElementById('formMessage').value.trim();
+
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    const btn = event.target.closest('button');
+    const originalText = btn.innerHTML;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      const successMsg = document.getElementById('successMsg');
+      successMsg.classList.remove('hidden');
+      successMsg.classList.add('block');
+      
+      document.getElementById('formName').value = '';
+      document.getElementById('formEmail').value = '';
+      document.getElementById('formPhone').value = '';
+      document.getElementById('formService').value = '';
+      document.getElementById('formMessage').value = '';
+      
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        successMsg.classList.add('hidden');
+        successMsg.classList.remove('block');
+      }, 6000);
+    }, 1200);
+  }
+
+  // ---- INIT ----
+  document.addEventListener('DOMContentLoaded', () => {
+    initReveal();
+    initCounters();
+  });
+</script>
+</body>
+</html>
